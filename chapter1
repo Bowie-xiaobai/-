@@ -1,0 +1,36 @@
+//描线
+#include<GL/glut.h>
+#include<iostream>
+
+void drawLine2()
+{
+    glClear(GL_COLOR_BUFFER_BIT);  //清楚缓冲区
+    glColor3f(1.0f, 1.0f, 1.0f);   //白色划线
+       //设置线宽
+    glLineWidth(2.0);
+    //glBegin(GL_LINES);           //偶数个数个点 第一个点连第二个 第三个连第四个点
+    //glBegin(GL_LINE_STRIP);      //不进行首尾相接的线
+    glBegin(GL_LINE_LOOP);         //进行收尾相接的连线
+    //vertex的参数不能太大 大概负一到一之间差不多
+    glVertex2f(0.5,0.2);
+    glVertex2f(0.5, 0.5);
+
+    glVertex2f(-0.5, 0.0);
+    glVertex2f(-0.5, -0.3);
+
+    glEnd();
+
+    //s刷新一下
+    glFlush();
+}
+int main(int argc, char* argv[])
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);//选择模式
+    glutInitWindowPosition(100, 100);//设置窗口位置
+    glutInitWindowSize(400, 400);//设置窗口大小
+    glutCreateWindow("第一个OpenGL程序");//设置窗口名字
+    glutDisplayFunc(drawline5);//调用函数
+    glutMainLoop();
+    return 0;
+}
