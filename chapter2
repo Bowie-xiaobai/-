@@ -1,0 +1,4 @@
+//glViewport函数
+
+//glViewport(GLint x,GLint y,GLsizei width,GLsizei height)
+//分别为窗口左下角的坐标，后面是窗口的宽度和高度
