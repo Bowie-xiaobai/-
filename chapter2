@@ -34,8 +34,8 @@ void myKeyboard(unsigned char key, int x, int y)
 void init()
 {
 	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	glMatrixMode(GL_PROJECTION);    //还有两个参数 GL_MODEVIEW (模型视图)和GL_TEXTURE(纹理)
+	glLoadIdentity();               //复位操作
 	gluOrtho2D(-20, 30, -20, 30);	//可视的范围，类似鼠标滚轮的远近
 }
 
