@@ -1,4 +1,56 @@
-//glViewport函数
 
-//glViewport(GLint x,GLint y,GLsizei width,GLsizei height)
-//分别为窗口左下角的坐标，后面是窗口的宽度和高度
+//键盘交互
+#include <GL/glut.h>
+
+int xd = 0, yd = 0;	//定义全局变量
+
+void myDisplay()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(0.8, 0.5, 0.6);
+	glPointSize(5);
+	glBegin(GL_POLYGON);
+	glVertex2i(10 + xd, 10 + yd);
+	glVertex2i(20 + xd, 10 + yd);
+	glVertex2i(20 + xd, 0 + yd);
+	glVertex2i(10 + xd, 0 + yd);
+	glEnd();
+	glFlush();
+}
+
+//这个函数是交互的实现
+void myKeyboard(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 'w':yd++; break;
+	case 's':yd--; break;
+	case 'a':xd--; break;
+	case 'd':xd++; break;
+	}
+	glutPostRedisplay();	//刷新显示
+}
+
+void init()
+{
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(-20, 30, -20, 30);	//可视的范围，类似鼠标滚轮的远近
+}
+
+
+int main(int argc, char* argv[])
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
+	glutInitWindowPosition(300, 100);
+	glutInitWindowSize(600, 500);
+	glutCreateWindow("key interaction");
+
+	init();
+	glutDisplayFunc(myDisplay);	//传递需要勾画的函数
+	glutKeyboardFunc(myKeyboard);		//调用键盘函数
+	glutMainLoop();
+	return 0;
+}
